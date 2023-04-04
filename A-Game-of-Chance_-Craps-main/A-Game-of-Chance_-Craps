@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int main(void) {
+srand(time(NULL));
+int a,b,c,d;
+char ch;
+int e=2;
+int f,g,h,j;
+int point1,roll1;
+int point2,roll2;
+a=1+rand()%6;
+b=1+rand()%6;
+point1=a+b;
+c=1+rand()%6;
+d=1+rand()%6;
+point2=c+d;
+printf("This is dice game named A Game of Chance: Craps.\n");
+printf("Rules:\n  Roll two dice\n  Sum of the spots on two upward faces is calculated\n  7 or 11 on first throw player wins\n  2, 3 or 12 on first throw player loses\n  4,5,6,8,9,10 becomes players point\n  Player must roll his point before rolling 7 to win\n");
+printf("\n");
+if((point1==7||point1==11)&&(point2!=7&&point2!=11)){
+  printf("Player1 rolled %d and Player2 rolled %d.\nPlayer1 wins!",point1,point2);
+}
+else if((point2==7||point2==11)&&(point1!=7&&point1!=11)){
+  printf("Player1 rolled %d and Player2 rolled %d.\nPlayer2 wins!",point1,point2);
+}
+else if((point2==7||point2==11)&&(point1==7||point1==11)){
+  printf("Player1 rolled %d and Player2 rolled %d.\nRow",point1,point2);
+}
+else if((point2==2||point2==3||point2==12)&&(point1!=2&&point1!=3&&point1!=12)){
+  printf("Player2 got %d so losed.\nPlayer1 wins.",point2);
+}
+else if((point1==2||point1==3||point1==12)&&(point2!=2&&point2!=3&&point2!=12)){
+  printf("Player1 got %d so losed.\nPlayer2 wins.",point1);
+}
+else if((point1==2||point1==3||point1==12)&&(point2==2||point2==3||point2==12)){
+  printf("Player1 got %d Player2 got %d so both of them losed.",point1,point2);
+}
+
+else{
+printf("Nobody got 7 or 11.\nPlayer1's point %d and player2's point %d.\nPlease keep pressing enter to continue the game.\n",point1,point2);
+  while(e==2){
+  ch=fgetc(stdin);
+/*
+printf("To continue please press enter\n");
+    if(ch==0x0A){
+      continue;
+    }
+    else{
+      break;
+    }
+*/
+f=1+rand()%6;
+g=1+rand()%6;
+roll1=f+g;
+h=1+rand()%6;
+j=1+rand()%6;
+roll2=h+j;
+    if(roll1==point1&&roll2!=point2){
+      printf("Player1 rolled %d and player2 rolled %d.\nPlayer1 wins!",roll1,roll2);
+      e--;
+    }
+    else if(roll2==point2&&roll1!=point1){
+      printf("Player1 rolled %d and player2 rolled %d.\nPlayer2 wins!",roll1,roll2);
+      e--;
+    } 
+    else if(roll2==point2&&roll1==point1){
+      printf("Player1 rolled %d and player2 rolled %d.\nRow.",roll1,roll2);
+      e--;
+    }
+    else if(roll1==7&&roll2!=7){
+      printf("Player1 get 7 so losed.\nPlayer2 wins.");
+      e--;
+    }
+    else if(roll2==7&&roll1!=7){
+      printf("Player2 got 7 so losed.\nPlayer1 wins.");
+      e--;
+    }
+    else if(roll2==7&&roll1==7){
+      printf("Player1 and Player2 got 7 so both of them losed.");
+      e--;
+    }
+    else if(e==2){
+      printf("Player1 rolled %d and player2 rolled %d.\nNo one wins. The game continues...\n",roll1,roll2);
+    }
+  }
+}
+  
+  return 0;
+}
